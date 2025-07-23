@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta de Campeones Progrentials - Fase 2</title>
+    <link rel="icon" href="copa.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0015 0%, #1a0033 25%, #2d1b69 50%, #8b5cf6 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ffd93d, #ff6b6b);
+            border-radius: 50%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+            clip-path: polygon(30% 0%, 0% 50%, 30% 100%, 100% 100%, 70% 50%, 100% 0%);
+            animation-delay: 4s;
+        }
+
+        .shape:nth-child(4) {
+            bottom: 30%;
+            right: 25%;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(45deg, #00cec9, #55a3ff);
+            clip-path: polygon(50% 0%, 0% 38%, 20% 100%, 80% 100%, 100% 38%);
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 120px;
+        }
+
+        .slideshow-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 900px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slideshow-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6c5ce7, #00cec9, #ff6b6b);
+            background-size: 300% 100%;
+            animation: gradientMove 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .slide {
+            display: none;
+            text-align: center;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd93d, #ff6b6b, #6c5ce7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .slide h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 25px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .slide p, .slide li {
+            color: #e1e1e1;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .slide ul {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+            padding-left: 20px;
+        }
+
+        .slide li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .slide li::marker {
+            color: #ffd93d;
+        }
+
+        .phase-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.3);
+        }
+
+        .trophy {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(108, 92, 231, 0.4);
+        }
+
+        .nav-btn:disabled {
+            background: linear-gradient(135deg, #666, #888);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .continue-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            color: #1a0033;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 35px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            display: none;
+            text-align: center;
+            margin: 30px auto 0 auto;
+            display: block;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+            align-items: center;
+        }
+
+        .slide-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: linear-gradient(135deg, #ffd93d, #ff6b6b);
+            transform: scale(1.2);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            color: #1a0033;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .logo-container {
+            padding: 15px 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            height: 60px;
+        }
+
+        .logo-img {
+            max-width: 200px;
+            max-height: 150px;
+            width: auto;
+            height: auto;
+            filter: brightness(1.2) contrast(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .slideshow-container {
+                padding: 20px;
+                width: 95%;
+            }
+            
+            .slide h1 {
+                font-size: 2rem;
+            }
+            
+            .slide h2 {
+                font-size: 1.5rem;
+            }
+            
+            .slide p, .slide li {
+                font-size: 1rem;
+            }
+        }
+        
+        .custom-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ffffffcc;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 5;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-logo {
+        max-width: 100%;
+        height: auto;
+        width: auto;
+        margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="bg-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+
+        <div class="container">
+            <div class="slideshow-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+
+                <!-- Bienvenida -->
+                <div class="slide active">  
+                    <div class="trophy"><img src="copa.png" alt="Copa Progrentis" class="logo-img"></div>
+                    <div class="phase-badge">FASE 2</div>
+                    <h1>RUTA DE CAMPEONES</h1>
+                    <h2>PROGRENTIALS</h2>
+                    <p>¡Bienvenido a la segunda fase de la competencia!</p>
+                    <p><strong>Eliminatoria Institucional</strong></p>
+                    <p>Del 8 de septiembre al 29 de septiembre</p>
+                </div>
+
+                <!-- Información de la Fase -->
+                <div class="slide">
+                    <h2>Eliminatoria Institucional</h2>
+                    <div class="phase-badge">FASE 2 DE 3</div>
+                    <p>Has superado con éxito la primera fase y ahora te encuentras en la <strong>Eliminatoria Institucional</strong>.</p>
+                    <p>En esta fase, competirás contra otros estudiantes de tu institución que también lograron clasificar.</p>
+                    <p><strong>Objetivo:</strong> Demostrar tus destrezas de compresión y resolución de problemas para avanzar a la <strong>Gran Final Nacional.</strong></p>
+                </div>
+
+                <!-- Instrucciones Generales -->
+                <div class="slide">
+                    <h2>Instrucciones Generales</h2>
+                    <ul>
+                        <li><strong>Duración:</strong> La prueba tiene un tiempo límite de 40 minutos.</li>
+                        <li><strong>Guardado automático:</strong> Tus respuestas se guardarán de forma automática</li>
+                        <li><strong>Importante:</strong> Solo tienes un intento para completar la prueba</li>
+                    </ul>
+                </div>
+
+                <!-- Recomendaciones -->
+                <div class="slide">
+                    <h2>Recomendaciones Importantes</h2>
+                    <ul>
+                        <li><strong>Lee cuidadosamente:</strong> Tómate tu tiempo para entender cada pregunta</li>
+                        <li><strong>Gestiona el tiempo:</strong> Distribuye tu tiempo de manera inteligente</li>
+                        <li><strong>Revisa tus respuestas:</strong> Aprovecha para verificar antes de avanzar</li>
+                        <li><strong>Conexión estable:</strong> Asegúrate de tener una conexión a internet estable</li>
+                        <li>No retroceder ni actualizar la página para evitar perder la prueba</li>
+                    </ul>
+                </div>
+
+                <!-- Niveles de Competencia -->
+                <div class="slide">
+                    <h2>Niveles de Competencia</h2>
+                    <p>La competencia está diseñada para estudiantes de todos los niveles:</p>
+                    <ul>
+                        <li><strong>ABC:</strong> Primero, Segundo y Tercer grado</li>
+                        <li><strong>MENTOR:</strong> Cuarto, Quinto y Sexto grado </li>
+                        <li><strong>ÉLITE:</strong> Séptimo, Octavo y Noveno grado</li>
+                        <li><strong>PRO:</strong> Décimo, Undécimo y Duodécimo grado</li>
+                    </ul>
+                    <p>Las preguntas estarán adaptadas a tu nivel de consola.</p>
+                </div>
+
+                <!-- Próximos Pasos -->
+                <div class="slide">
+                    <h2>¿Qué Sigue Después?</h2>
+                    <div class="phase-badge">GRAN FINAL NACIONAL</div>
+                    <p>Los ganadores de cada nivel en su institución participarán en la <strong>Gran Final Nacional</strong>.</p>
+                    <p><strong>Fecha:</strong> Del 29 de septiembre al 13 de octubre</p>
+                    <p><strong>Premio:</strong> Los campeones nacionales recibirán grandes premios de nuestros aliados patrocinadores.</p>
+                    <p><strong>Semana de premiación:</strong> Del lunes 13 al viernes 17 de octubre</p>
+                </div>
+
+                <!-- ¡Listo para comenzar! -->
+                <div class="slide">
+                    <div class="trophy">🚀</div>
+                    <h2>¡Estás Listo!</h2>
+                    <p>Has revisado todas las instrucciones importantes.</p>
+                    <p>Recuerda tener tu código y contraseña suministrado a mano.</p>
+                    <p><strong>¡Demuestra de qué estás hecho y conquista esta fase!</strong></p>
+                    <p>Cuando estés preparado, haz clic en "Continuar a la Prueba" para comenzar.</p>
+                    <button class="continue-btn" onclick="startTest()">Continuar a la Prueba 🏆</button>
+                </div>
+
+                <div class="navigation">
+                    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Anterior</button>
+                    <div class="slide-indicator" id="slideIndicator"></div>
+                    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="custom-footer">
+        <img src="logos.png" alt="Logo" class="footer-logo">
+        <p>Todos los Derechos Reservados &copy; 2025</p><br>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function initSlideshow() {
+            updateSlideIndicator();
+            updateNavigation();
+            updateProgressBar();
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+            
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            
+            slides[currentSlide].classList.add('active');
+            updateNavigation();
+            updateSlideIndicator();
+            updateProgressBar();
+            
+            const continueBtn = document.querySelector('.continue-btn');
+            if (currentSlide === totalSlides - 1) {
+                continueBtn.style.display = 'block';
+            } else {
+                continueBtn.style.display = 'none';
+            }
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function updateSlideIndicator() {
+            const indicator = document.getElementById('slideIndicator');
+            indicator.innerHTML = '';
+            
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (i === currentSlide) dot.classList.add('active');
+                dot.onclick = () => showSlide(i);
+                indicator.appendChild(dot);
+            }
+        }
+        function updateProgressBar() {
+            const progress = document.getElementById('progressBar');
+            const percentage = ((currentSlide + 1) / totalSlides) * 100;
+            progress.style.width = percentage + '%';
+        }
+        function startTest() {
+            const testUrl = 'https://progrentis.com/';
+            
+            if (confirm('¿Estás seguro de que quieres comenzar la prueba? Una vez que comiences, no podrás volver a estas instrucciones.')) {
+                window.location.href = testUrl;
+            }
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'Enter' && currentSlide === totalSlides - 1) startTest();
+        });
+        initSlideshow();
+    </script>
+
+</body>
+</html>
