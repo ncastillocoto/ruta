@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta de Campeones Progrentials - Fase 2 | Fase Institucional</title>
+    <link rel="icon" href="copa.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="bg-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+
+        <div class="container">
+            <div class="slideshow-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+
+                <!-- Bienvenida -->
+                <div class="slide active">  
+                    <div class="trophy"><img src="copa.png" alt="Copa Progrentis" class="logo-img"></div>
+                    <div class="phase-badge">FASE 2</div>
+                    <h1>RUTA DE CAMPEONES</h1>
+                    <h2>PROGRENTIALS</h2>
+                    <p>¡Bienvenido a la segunda fase de la competencia!</p>
+                    <p><strong>Eliminatoria Institucional</strong></p>
+                    <p>Del 14 al 24 de ABRIL DEL 2026.</p>
+                </div>
+
+                <!-- Información de la Fase -->
+                <div class="slide">
+                    <h2>Eliminatoria Institucional</h2>
+                    <div class="phase-badge">FASE 2 DE 3</div>
+                    <p>Has superado con éxito la primera fase de entrenamiento y ahora te encuentras en la <strong>Eliminatoria Institucional</strong>.</p>
+                    <p>En esta fase, competirás contra otros estudiantes de tu institución que también lograron clasificar.</p>
+                    <p><strong>Objetivo:</strong> Demostrar tus destrezas de compresión y resolución de problemas para avanzar a la <strong>Gran Final Nacional.</strong></p>
+                </div>
+
+                <!-- Instrucciones Generales -->
+                <div class="slide">
+                    <h2>Instrucciones Generales</h2>
+                    <ul>
+                        <li><strong>Duración:</strong> La prueba tiene un tiempo límite de 40 minutos.</li>
+                        <li><strong>Guardado automático:</strong> Tus respuestas se guardarán de forma automática</li>
+                        <li><strong>Importante:</strong> Solo tienes un intento para completar la prueba</li>
+                    </ul>
+                </div>
+
+                <!-- Recomendaciones -->
+                <div class="slide">
+                    <h2>Recomendaciones Importantes</h2>
+                    <ul>
+                        <li><strong>Lee cuidadosamente:</strong> Tómate tu tiempo para entender cada pregunta</li>
+                        <li><strong>Gestiona el tiempo:</strong> Distribuye tu tiempo de manera inteligente</li>
+                        <li><strong>Revisa tus respuestas:</strong> Aprovecha para verificar antes de avanzar</li>
+                        <li><strong>Conexión estable:</strong> Asegúrate de tener una conexión a internet estable</li>
+                        <li>No retroceder ni actualizar la página para evitar perder la prueba</li>
+                    </ul>
+                </div>
+
+                <!-- Niveles de Competencia -->
+                <div class="slide">
+                    <h2>Niveles de Competencia</h2>
+                    <p>La competencia está diseñada para estudiantes de todos los niveles:</p>
+                    <ul>
+                        <li><strong>ABC:</strong> Primero, Segundo y Tercer de Primaria</li>
+                        <li><strong>MENTOR:</strong> Cuarto, Quinto y Sexto de Primaria.</li>
+                        <li><strong>ÉLITE:</strong> Primero, Segundo y Tercero de Secundaria.</li>
+                        <li><strong>PRO:</strong> Cuarto, Quinto y Sexto de Secundaria.</li>
+                    </ul>
+                    <p>Las preguntas estarán adaptadas a tu nivel de consola.</p>
+                </div>
+
+                <!-- Próximos Pasos -->
+                <div class="slide">
+                    <h2>¿Qué Sigue Después?</h2>
+                    <div class="phase-badge">GRAN FINAL NACIONAL</div>
+                    <p>Los ganadores de cada nivel en su institución participarán en la <strong>Gran Final Nacional</strong>.</p>
+                    <p><strong>Fecha:</strong> Del 04 al 08 de MAYO del 2026.</p>
+                    <p><strong>Premio:</strong> Los campeones nacionales recibirán grandes premios de nuestros aliados patrocinadores.</p>
+                    <p><strong>Semana de premiación:</strong> Del 12 al 15 de MAYO del 2026.</p>
+                </div>
+
+                <!-- ¡Listo para comenzar! -->
+                <div class="slide">
+                    <div class="trophy">🚀</div>
+                    <h2>¡Estás Listo!</h2>
+                    <p>Has revisado todas las instrucciones importantes.</p>
+                    <p>Recuerda tener tu código y contraseña suministrado a mano.</p>
+                    <p><strong>¡Demuestra de qué estás hecho y conquista esta fase!</strong></p>
+                    <p>Cuando estés preparado, haz clic en "Continuar a la Prueba" para comenzar.</p>
+                    <button class="continue-btn" onclick="startTest()">Continuar a la Prueba 🏆</button>
+                </div>
+
+                <div class="navigation">
+                    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Anterior</button>
+                    <div class="slide-indicator" id="slideIndicator"></div>
+                    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="custom-footer">
+        <div class="footer-content">
+            <img src="logos.png" alt="Logos aliados" class="footer-logo">
+
+            <div class="footer-social">
+                <span class="footer-social-title">SÍGUENOS</span>
+
+                <div class="social-links">
+                    <!-- Instagram -->
+                    <a class="social-link" href="https://instagram.com/grupomentoraprogrentis" target="_blank">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+
+                    <!-- Facebook -->
+                    <a class="social-link" href="https://facebook.com/grupomentora" target="_blank">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v6h3v-6h3l1-3h-4v-3c0-.6.4-1 1-1Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+
+                    <!-- YouTube -->
+                    <a class="social-link" href="https://youtube.com/grupomentoraprogrentis" target="_blank">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M21 12s0-3.3-.4-4.8a2.6 2.6 0 0 0-1.8-1.8C17.3 5 12 5 12 5s-5.3 0-6.8.4A2.6 2.6 0 0 0 3.4 7.2C3 8.7 3 12 3 12s0 3.3.4 4.8a2.6 2.6 0 0 0 1.8 1.8C6.7 19 12 19 12 19s5.3 0 6.8-.4a2.6 2.6 0 0 0 1.8-1.8C21 15.3 21 12 21 12Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 15.2V8.8L16 12l-6 3.2Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+
+                    <!-- Web -->
+                    <a class="social-link" href="https://www.grupomentora.com/" target="_blank">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 12h20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 2c3 3 3 17 0 20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 2c-3 3-3 17 0 20" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <p class="footer-copy">Todos los Derechos Reservados &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
